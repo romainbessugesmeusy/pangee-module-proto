@@ -1,0 +1,34 @@
+h2, h3 {
+    padding: 0 1rem;
+}
+
+.chooser {
+    margin: 1rem;
+    border: 1px solid #EEE;
+}
+
+.chooser > div {
+    padding: 1rem;
+}
+
+.field {
+    margin: 1rem;
+    border: 1px solid #EEE;
+    padding: 1rem;
+}
+
+.field > label {
+    display: block;
+}
+
+.field.SetValues {
+    display: none;
+}
+
+pre {
+    padding: 1rem;
+    margin: 1rem;
+    background: #EEE;
+    border: 1px solid #DDD;
+    color: #666;
+}

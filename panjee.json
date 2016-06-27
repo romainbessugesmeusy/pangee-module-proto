@@ -1,0 +1,317 @@
+{
+    "Cultivar": {
+        "ID": "Cultivar",
+        "type": "module",
+        "extends": null,
+        "title": {
+            "fr": "Variété",
+            "en": "Cultivar"
+        },
+        "fields": [
+            {
+                "ID": "kind",
+                "label": {
+                    "fr": "Espèce",
+                    "en": "Kind"
+                },
+                "type": "Select",
+                "choices": "[Kinds]",
+                "required": "TRUE",
+                "hint": {
+                    "fr": "",
+                    "en": ""
+                }
+            },
+            {
+                "ID": "cultivar",
+                "label": {
+                    "fr": "Variété",
+                    "en": "Cultivar"
+                },
+                "type": "Select",
+                "choices": "[Cultivar.{kind}]",
+                "visible": "{kind} != \"undefined\"",
+                "hint": {
+                    "fr": "",
+                    "en": ""
+                }
+            },
+            {
+                "ID": "setValues",
+                "label": {
+                    "fr": "",
+                    "en": ""
+                },
+                "type": "SetValues",
+                "value": "[Cultivar.{kind}.{cultivar}.SetValues]",
+                "hint": {
+                    "fr": "",
+                    "en": ""
+                }
+            }
+        ]
+    },
+    "Kinds": {
+        "ID": "Kinds",
+        "type": "list",
+        "extends": null,
+        "items": [
+            {
+                "ID": "apple",
+                "label": {
+                    "fr": "Pomme",
+                    "en": "Apple"
+                },
+                "icon": "apple.png"
+            },
+            {
+                "ID": "orange",
+                "label": {
+                    "fr": "Orange",
+                    "en": "Orange"
+                }
+            },
+            {
+                "ID": "apricot",
+                "label": {
+                    "fr": "Abricot",
+                    "en": "Apricot"
+                }
+            },
+            {
+                "ID": "banana",
+                "label": {
+                    "fr": "Banane",
+                    "en": "Banana"
+                }
+            }
+        ]
+    },
+    "Cultivar.apple": {
+        "ID": "Cultivar.apple",
+        "type": "list",
+        "extends": null,
+        "items": [
+            {
+                "ID": "pinkLady",
+                "label": {
+                    "fr": "Pink Lady",
+                    "en": "Pink Lady"
+                }
+            },
+            {
+                "ID": "canada",
+                "label": {
+                    "fr": "Canada",
+                    "en": "Canada"
+                }
+            },
+            {
+                "ID": "royalGala",
+                "label": {
+                    "fr": "Royal Gala",
+                    "en": "Royal Gala"
+                }
+            },
+            {
+                "ID": "granny",
+                "label": {
+                    "fr": "Granny",
+                    "en": "Granny"
+                }
+            },
+            {
+                "ID": "golden",
+                "label": {
+                    "fr": "Golden",
+                    "en": "Golden"
+                }
+            }
+        ]
+    },
+    "Cultivar.apple.generic.SetValues": {
+        "ID": "Cultivar.apple.generic.SetValues",
+        "type": "setValues",
+        "extends": null,
+        "setters": [
+            {
+                "ID": "Nutrition.energy",
+                "value": 50
+            },
+            {
+                "ID": "Nutrition.fattyAcid",
+                "value": 20
+            },
+            {
+                "ID": "Seasons",
+                "value": [
+                    1,
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    2,
+                    2,
+                    2,
+                    1,
+                    1
+                ]
+            }
+        ]
+    },
+    "Cultivar.apple.pinkLady.SetValues": {
+        "ID": "Cultivar.apple.pinkLady.SetValues",
+        "type": "setValues",
+        "extends": "[Cultivar.apple.generic.SetValues]"
+    },
+    "Cultivar.apple.canada.SetValues": {
+        "ID": "Cultivar.apple.canada.SetValues",
+        "type": "setValues",
+        "extends": "[Cultivar.apple.generic.SetValues]"
+    },
+    "Preservation": {
+        "ID": "Preservation",
+        "type": "module",
+        "extends": null,
+        "title": {
+            "fr": "Conservation",
+            "en": "preservation"
+        },
+        "fields": [
+            {
+                "ID": "packagingType",
+                "label": {
+                    "fr": "Choisissez le conditionnement du produit",
+                    "en": ""
+                },
+                "type": "RadioButtonGroup",
+                "choices": "[preservationPackagingType]",
+                "value": "withPackaging",
+                "hint": {
+                    "fr": "",
+                    "en": ""
+                },
+                "style": "important"
+            },
+            {
+                "ID": "preservationBeforeOpening",
+                "label": {
+                    "fr": "Instructions de conservation avant ouverture",
+                    "en": "Preservation instructions before opening"
+                },
+                "type": "SelectMultiple",
+                "choices": "[preservationMethodsBeforeOpeningTemplates]",
+                "options": "withAutocompletion",
+                "visible": "{packagingType} == \"withPackaging\"",
+                "hint": {
+                    "fr": "",
+                    "en": ""
+                }
+            },
+            {
+                "ID": "preservationAfterOpening",
+                "label": {
+                    "fr": "Instructions de conservation après ouverture",
+                    "en": "Preservation instructions after opening"
+                },
+                "type": "SelectMultiple",
+                "choices": "[preservationMethodsAfterOpeningTemplates]",
+                "hint": {
+                    "fr": "",
+                    "en": ""
+                }
+            }
+        ]
+    },
+    "preservationMethodsBeforeOpeningTemplates": {
+        "ID": "preservationMethodsBeforeOpeningTemplates",
+        "type": "list",
+        "extends": null,
+        "items": [
+            {
+                "ID": "dry",
+                "label": {
+                    "fr": "Au sec",
+                    "en": "Dry"
+                }
+            },
+            {
+                "ID": "fridge",
+                "label": {
+                    "fr": "Au réfrigérateur",
+                    "en": "Fridge"
+                }
+            }
+        ]
+    },
+    "preservationMethodsAfterOpeningTemplates": {
+        "ID": "preservationMethodsAfterOpeningTemplates",
+        "type": "list",
+        "extends": "[preservationMethodsBeforeOpeningTemplates]"
+    },
+    "preservationPackagingType": {
+        "ID": "preservationPackagingType",
+        "type": "list",
+        "extends": null,
+        "items": [
+            {
+                "ID": "withPackaging",
+                "label": {
+                    "fr": "Avec Packaging",
+                    "en": "With Packaging"
+                }
+            },
+            {
+                "ID": "withoutPackaging",
+                "label": {
+                    "fr": "Sans Packaging",
+                    "en": "Without Packaging"
+                }
+            },
+            {
+                "ID": "unknown",
+                "label": {
+                    "fr": "Indéterminé",
+                    "en": "Unknown"
+                }
+            }
+        ]
+    },
+    "Nutrition": {
+        "ID": "Nutrition",
+        "type": "module",
+        "extends": null,
+        "title": {
+            "fr": "Nutrition",
+            "en": "Nutrition"
+        },
+        "fields": [
+            {
+                "ID": "energy",
+                "label": {
+                    "fr": "Énergie",
+                    "en": "Energy"
+                },
+                "type": "Number",
+                "options": "unitKj",
+                "hint": {
+                    "fr": "",
+                    "en": ""
+                }
+            },
+            {
+                "ID": "fattyAcid",
+                "label": {
+                    "fr": "Acides gras",
+                    "en": "Fatty Acid"
+                },
+                "type": "Number",
+                "hint": {
+                    "fr": "",
+                    "en": ""
+                }
+            }
+        ]
+    }
+}
