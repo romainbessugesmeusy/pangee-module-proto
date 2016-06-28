@@ -126,6 +126,7 @@ $(function () {
                     break;
                 case 'RadioButtonGroup':
                 case 'CheckboxGroup':
+                case 'SelectMultiple':
                     if (isReference(options.choices)) {
                         resolveReference(options.choices, function (list) {
                             $(list.items).each(function (i, item) {
